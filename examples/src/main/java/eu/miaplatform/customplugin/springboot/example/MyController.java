@@ -7,24 +7,15 @@ import eu.miaplatform.customplugin.springboot.CustomPluginRequest;
 import eu.miaplatform.customplugin.springboot.example.model.Author;
 import eu.miaplatform.customplugin.springboot.example.model.News;
 import eu.miaplatform.customplugin.springboot.example.model.PersonWithNews;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
 public class MyController extends CustomPluginController {
 
-    private final Logger logger = LoggerFactory.getLogger(CustomPluginController.class);
-
     private final String CRUDPATH = "http://localhost:8080";
-
-    @Autowired
-    private MyService myService;
 
     @RequestMapping("/")
     public String index() {
@@ -33,23 +24,45 @@ public class MyController extends CustomPluginController {
 
     @GetMapping("/personwithnews")
     @ResponseBody
-    public PersonWithNews getPersonWithNews(@ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest, @RequestParam(value="name") String name) {
+    public PersonWithNews getPersonWithNews(@ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest, @RequestParam(value = "name") String name) {
 
-        customPluginRequest.getHeadersPropagator().getHeaders().forEach(header ->
-                logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
-        );
+        return customPluginService.addHandler(customPluginRequest, (request -> {
 
-        return myService.getPersonWithNews(customPluginRequest, name);
+            request.getHeadersPropagator().getHeaders().forEach(header ->
+                    logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
+            );
+
+            ServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, null, request.getHeadersPropagator());
+
+            List<Author> authors = serviceClient.retrieveByAttribute("name", name, Author.class).collect(Collectors.toList());
+            List<News> news = serviceClient.retrieveByAttribute("author", name, News.class).collect(Collectors.toList());
+
+
+            if (authors.size() > 0 && news.size() > 0) {
+                return new PersonWithNews(authors.get(0).getName(), news.get(0).getTitle());
+            }
+            return null;
+        }));
     }
 
     @PostMapping("/personwithnews")
-    @ResponseBody
     public void addPersonWithNews(@ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest, @RequestBody PersonWithNews personWithNews) {
 
-        customPluginRequest.getHeadersPropagator().getHeaders().forEach(header ->
-                logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
-        );
+        customPluginService.addHandler(customPluginRequest, (request -> {
 
-        myService.createPersonAndNews(customPluginRequest, personWithNews);
+            request.getHeadersPropagator().getHeaders().forEach(header ->
+                    logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
+            );
+
+            Author author = new Author(personWithNews.getPersonName(), "Surname", 99);
+            News news = new News(personWithNews.getNewsTitle(), "body", personWithNews.getPersonName(), "2018-12-12T16:06:59.872Z", 99);
+
+            ServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, null, request.getHeadersPropagator());
+            String savedAuthor = serviceClient.storeSingle(author, Author.class);
+            String savedNews = serviceClient.storeSingle(news, News.class);
+
+            logger.info(savedAuthor);
+            logger.info(savedNews);
+        }));
     }
 }
