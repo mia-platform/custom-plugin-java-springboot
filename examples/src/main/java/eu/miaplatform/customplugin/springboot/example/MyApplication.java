@@ -8,12 +8,12 @@ import java.util.Collections;
 @SpringBootApplication
 public class MyApplication {
 
-    private static final String serverPort = "8081";
+    private static final String SERVER_PORT = "8081";
 
     public static void main(String[] args) {
 
         SpringApplication app = new SpringApplication(MyApplication.class);
-        app.setDefaultProperties(Collections.singletonMap("server.port", serverPort));
+        app.setDefaultProperties(Collections.singletonMap("server.port", SERVER_PORT));
         app.run(args);
 
     }

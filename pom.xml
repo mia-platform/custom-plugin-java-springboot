@@ -38,6 +38,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>eu.mia-platform</groupId>
             <artifactId>custom-plugin-java</artifactId>
             <version>0.0.1-SNAPSHOT</version>
