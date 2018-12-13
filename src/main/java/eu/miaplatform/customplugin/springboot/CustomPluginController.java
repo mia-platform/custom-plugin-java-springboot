@@ -1,13 +1,17 @@
 package eu.miaplatform.customplugin.springboot;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import eu.miaplatform.customplugin.springboot.CustomPluginOptions;
+import eu.miaplatform.customplugin.springboot.CustomPluginRequest;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.function.Function;
 
-@RestController
-public interface CustomPluginController {
+public abstract class CustomPluginController {
 
-    String handle();
+    public final String cpRequest = "CPREQUEST";
+
+    @ModelAttribute(cpRequest)
+    public CustomPluginRequest populate (HttpServletRequest request) {
+        return new CustomPluginRequest(request, new CustomPluginOptions());
+    }
 }
