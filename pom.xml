@@ -27,22 +27,20 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/mia-platform/custom-plugin-java-springboot.git</url>
+        <url>https://github.com/mia-platform/custom-plugin-java-springboot</url>
         <connection>scm:git@github.com:mia-platform/custom-plugin-java-springboot.git</connection>
         <developerConnection>scm:git@github.com:mia-platform/custom-plugin-java-springboot.git</developerConnection>
     </scm>
 
     <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>Releases</name>
-            <url>http://nexus.mia-platform.eu/repository/maven-releases</url>
-        </repository>
         <snapshotRepository>
-            <id>nexus</id>
-            <name>Snapshot</name>
-            <url>http://nexus.mia-platform.eu/repository/maven-snapshots</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
 
     <parent>
@@ -56,14 +54,6 @@
         <src.dir>src/main/java</src.dir>
         <test.src.dir>src/test/java</test.src.dir>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <name>Snapshot</name>
-            <url>http://nexus.mia-platform.eu/repository/maven-snapshots/</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>
@@ -143,6 +133,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -160,7 +161,7 @@
         <dependency>
             <groupId>eu.mia-platform</groupId>
             <artifactId>custom-plugin-java</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
