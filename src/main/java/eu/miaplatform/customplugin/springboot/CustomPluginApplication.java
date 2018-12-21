@@ -8,7 +8,7 @@ import java.util.Collections;
 @SpringBootApplication
 public class CustomPluginApplication {
 
-    private static String serverPort = "8080";
+    private static String serverPort = "3000";
 
     public static void run(String[] args) {
 
