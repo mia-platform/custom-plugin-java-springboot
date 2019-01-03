@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot;
+package eu.miaplatform.customplugin.springboot.lib;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

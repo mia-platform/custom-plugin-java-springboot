@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.example.model
+package eu.miaplatform.customplugin.springboot.model
 
 import com.google.gson.annotations.SerializedName
 import eu.miaplatform.crud.library.annotations.CollectionAnnotation

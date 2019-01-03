@@ -6,18 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Collections;
 
 @SpringBootApplication
-public class CustomPluginApplication {
+public class Application {
 
     private static String serverPort = "3000";
 
-    public static void run(String[] args) {
-
-        SpringApplication app = new SpringApplication(CustomPluginApplication.class);
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(Application.class);
         app.setDefaultProperties(Collections.singletonMap("server.port", serverPort));
         app.run(args);
-    }
-
-    public static void setServerPort(String serverPort) {
-        CustomPluginApplication.serverPort = serverPort;
     }
 }

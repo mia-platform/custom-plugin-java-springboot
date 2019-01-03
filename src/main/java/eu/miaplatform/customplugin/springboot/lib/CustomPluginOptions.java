@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot;
+package eu.miaplatform.customplugin.springboot.lib;
 
 public class CustomPluginOptions {
     private String userIdHeaderKey;

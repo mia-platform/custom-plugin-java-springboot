@@ -1,5 +1,7 @@
 package eu.miaplatform.customplugin.springboot;
 
+import eu.miaplatform.customplugin.springboot.lib.CustomPluginOptions;
+import eu.miaplatform.customplugin.springboot.lib.CustomPluginRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;

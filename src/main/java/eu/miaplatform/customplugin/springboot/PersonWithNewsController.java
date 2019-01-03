@@ -1,30 +1,40 @@
-package eu.miaplatform.customplugin.springboot.example;
+package eu.miaplatform.customplugin.springboot;
 
 import eu.miaplatform.customplugin.CRUDServiceClient;
 import eu.miaplatform.customplugin.ServiceClientFactory;
-import eu.miaplatform.customplugin.springboot.CustomPluginController;
-import eu.miaplatform.customplugin.springboot.CustomPluginRequest;
-import eu.miaplatform.customplugin.springboot.example.model.Author;
-import eu.miaplatform.customplugin.springboot.example.model.News;
-import eu.miaplatform.customplugin.springboot.example.model.PersonWithNews;
+import eu.miaplatform.customplugin.springboot.lib.CustomPluginController;
+import eu.miaplatform.customplugin.springboot.lib.CustomPluginRequest;
+import eu.miaplatform.customplugin.springboot.model.Author;
+import eu.miaplatform.customplugin.springboot.model.News;
+import eu.miaplatform.customplugin.springboot.model.PersonWithNews;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class MyController extends CustomPluginController {
+@Api(value="personwithnewscontroller", description="Sample operations on person and news")
+public class PersonWithNewsController extends CustomPluginController {
 
     private final String CRUDPATH = "http://localhost:8080";
 
-    @RequestMapping("/")
+    @GetMapping("/")
+    @ApiOperation(value = "Sample base path")
     public String index() {
         return "Greetings from Custom Plugin Java!";
     }
 
     @GetMapping("/personwithnews")
+    @ApiOperation(value = "Search a person and its news", response = PersonWithNews.class)
     @ResponseBody
-    public PersonWithNews getPersonWithNews(@ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest, @RequestParam(value = "name") String name) {
+    public PersonWithNews getPersonWithNews(
+            @ApiIgnore
+            @ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest,
+            @RequestParam(value = "name") String name) {
 
         return customPluginService.addHandler(customPluginRequest, (request -> {
 
@@ -46,7 +56,11 @@ public class MyController extends CustomPluginController {
     }
 
     @PostMapping("/personwithnews")
-    public void addPersonWithNews(@ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest, @RequestBody PersonWithNews personWithNews) {
+    @ApiOperation(value = "Add a person and a news")
+    public void addPersonWithNews(
+            @ApiIgnore
+            @ModelAttribute(CP_REQUEST) CustomPluginRequest customPluginRequest,
+            @RequestBody PersonWithNews personWithNews) {
 
         customPluginService.addHandler(customPluginRequest, (request -> {
 

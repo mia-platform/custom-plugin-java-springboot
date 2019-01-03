@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.example.model;
+package eu.miaplatform.customplugin.springboot.model;
 
 import java.io.Serializable;
 
