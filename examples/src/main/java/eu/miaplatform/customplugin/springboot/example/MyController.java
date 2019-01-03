@@ -32,7 +32,7 @@ public class MyController extends CustomPluginController {
                     logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
             );
 
-            CRUDServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, null, request.getHeadersPropagator());
+            CRUDServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, 2, request.getHeadersPropagator());
 
             List<Author> authors = serviceClient.retrieveByAttribute("name", name, Author.class).collect(Collectors.toList());
             List<News> news = serviceClient.retrieveByAttribute("author", name, News.class).collect(Collectors.toList());
@@ -57,7 +57,7 @@ public class MyController extends CustomPluginController {
             Author author = new Author(personWithNews.getPersonName(), "Surname", 99);
             News news = new News(personWithNews.getNewsTitle(), "body", personWithNews.getPersonName(), "2018-12-12T16:06:59.872Z", 99);
 
-            CRUDServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, null, request.getHeadersPropagator());
+            CRUDServiceClient serviceClient = ServiceClientFactory.getCRUDServiceClient(CRUDPATH, 2, request.getHeadersPropagator());
             String savedAuthor = serviceClient.storeSingle(author, Author.class);
             String savedNews = serviceClient.storeSingle(news, News.class);
 

@@ -7,7 +7,7 @@
     <groupId>eu.miaplatform</groupId>
     <artifactId>custom-plugin-java-springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>Custom Plugin Java Spring Boot Library</name>
     <description>Library that allows you to define Mia-Platform custom plugins in java and spring boot easily</description>
@@ -57,10 +57,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -157,11 +153,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>eu.mia-platform</groupId>
             <artifactId>custom-plugin-java</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
