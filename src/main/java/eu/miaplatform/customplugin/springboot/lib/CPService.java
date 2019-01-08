@@ -7,13 +7,13 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Service
-public class CustomPluginService {
+public class CPService {
 
-    public <T extends Serializable> T addHandler(CustomPluginRequest request, Function<CustomPluginRequest, T> handler) {
+    public <T extends Serializable> T addHandler(CPRequest request, Function<CPRequest, T> handler) {
         return handler.apply(request);
     }
 
-    public void addHandler(CustomPluginRequest request, Consumer<CustomPluginRequest> handler) {
+    public void addHandler(CPRequest request, Consumer<CPRequest> handler) {
         handler.accept(request);
     }
 }

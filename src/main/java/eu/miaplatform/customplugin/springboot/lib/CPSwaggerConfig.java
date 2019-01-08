@@ -1,7 +1,6 @@
 package eu.miaplatform.customplugin.springboot.lib;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -9,11 +8,8 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@Configuration
-@EnableSwagger2
-public class SwaggerConfig {
+public abstract class CPSwaggerConfig {
 
     @Bean
     public Docket api() {
@@ -27,12 +23,30 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("Custom Plugin Spring Boot REST API")
-                .description("\"An example of a Custom Plugin Spring Boot REST API\"")
-                .version("0.0.1-SNAPSHOT")
-                .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
-                .contact(new Contact("Mia Platform", "https://www.mia-platform.eu", "info@mia-platform.eu"))
+                .title(getTitle())
+                .description(getDescription())
+                .version(getVersion())
+                .license(getLicense())
+                .licenseUrl(getLicenseUrl())
+                .contact(new Contact(getContactName(), getContactUrl(), getContactEmail()))
                 .build();
     }
+
+    public abstract String getTitle();
+
+    public abstract String getDescription();
+
+    public abstract String getVersion();
+
+    public abstract String getLicense();
+
+    public abstract String getLicenseUrl();
+
+    public abstract String getContactName();
+
+    public abstract String getContactUrl();
+
+    public abstract String getContactEmail();
+
+
 }

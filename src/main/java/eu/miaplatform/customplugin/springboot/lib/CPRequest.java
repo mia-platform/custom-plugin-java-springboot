@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-public class CustomPluginRequest implements RequestPlatformInfo {
+public class CPRequest implements RequestPlatformInfo {
 
     private HttpServletRequest request;
-    private CustomPluginOptions options;
+    private Options options;
     private Map<String, String> headers;
     private CustomPluginHeadersPropagator headersPropagator;
 
-    public CustomPluginRequest(HttpServletRequest request, CustomPluginOptions options) {
+    public CPRequest(HttpServletRequest request, Options options) {
         this.request = request;
         this.options = options;
         this.headers = Utils.getHeadersInfo(request);

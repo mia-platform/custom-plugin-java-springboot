@@ -1,20 +1,20 @@
 package eu.miaplatform.customplugin.springboot.lib;
 
-public class CustomPluginOptions {
+public class Options {
     private String userIdHeaderKey;
     private String groupsHeaderKey;
     private String clientTypeHeaderKey;
     private String backofficeHeaderKey;
     private String microserviceGatewayServiceName;
 
-    public CustomPluginOptions() {
+    public Options() {
         this.userIdHeaderKey = "ID";
         this.groupsHeaderKey = "GROUP";
         this.clientTypeHeaderKey = "CLIENT_TYPE";
         this.backofficeHeaderKey = "BACKOFFICE";
         this.microserviceGatewayServiceName = "MICROSERVICE";
     }
-    public CustomPluginOptions(String userIdHeaderKey, String groupsHeaderKey, String clientTypeHeaderKey, String backofficeHeaderKey, String microserviceGatewayServiceName) {
+    public Options(String userIdHeaderKey, String groupsHeaderKey, String clientTypeHeaderKey, String backofficeHeaderKey, String microserviceGatewayServiceName) {
         this.userIdHeaderKey = userIdHeaderKey;
         this.groupsHeaderKey = groupsHeaderKey;
         this.clientTypeHeaderKey = clientTypeHeaderKey;

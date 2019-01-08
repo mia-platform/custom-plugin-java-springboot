@@ -1,7 +1,7 @@
 package eu.miaplatform.customplugin.springboot;
 
-import eu.miaplatform.customplugin.springboot.lib.CustomPluginOptions;
-import eu.miaplatform.customplugin.springboot.lib.CustomPluginRequest;
+import eu.miaplatform.customplugin.springboot.lib.Options;
+import eu.miaplatform.customplugin.springboot.lib.CPRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -11,10 +11,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CustomPluginRequestTest {
+public class CPRequestTest {
 
-    private CustomPluginRequest customPluginRequest;
-    private CustomPluginOptions options = new CustomPluginOptions();
+    private CPRequest cpRequest;
+    private Options options = new Options();
     private String id = "1234";
     private String type = "admin";
     private boolean backoffice = true;
@@ -23,21 +23,21 @@ public class CustomPluginRequestTest {
 
     @Before
     public void setUp() {
-        customPluginRequest = new CustomPluginRequest(getRequest(options), options);
+        cpRequest = new CPRequest(getRequest(options), options);
     }
 
     @Test
     public void checkPlatformHeaders() {
-        assertEquals(id, customPluginRequest.getUserId());
-        assertEquals(type, customPluginRequest.getClientType());
-        assertEquals(backoffice, customPluginRequest.isFromBackOffice());
+        assertEquals(id, cpRequest.getUserId());
+        assertEquals(type, cpRequest.getClientType());
+        assertEquals(backoffice, cpRequest.isFromBackOffice());
         for (int i = 0; i < groups.size(); ++i) {
-            assertEquals(groups.get(i), customPluginRequest.getGroups().get(i));
+            assertEquals(groups.get(i), cpRequest.getGroups().get(i));
         }
 
     }
 
-    private HttpServletRequest getRequest(CustomPluginOptions options) {
+    private HttpServletRequest getRequest(Options options) {
 
         MockHttpServletRequest req = new MockHttpServletRequest();
 
