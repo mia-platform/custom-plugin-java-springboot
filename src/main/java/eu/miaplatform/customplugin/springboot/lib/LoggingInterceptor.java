@@ -20,10 +20,10 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
         logger.info("preHandle - request [" + request + "]");
 
-        Enumeration<String> headerNames = request.getHeaderNames();
+        /*Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             logger.info("headerName = " + headerNames.nextElement());
-        }
+        }*/
         return true;
     }
 
@@ -32,9 +32,9 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
         logger.info("postHandle - response [" + response + "]");
 
-        for (String s : response.getHeaderNames()) {
+        /*for (String s : response.getHeaderNames()) {
             logger.info("headerName = " + s);
-        }
+        }*/
 
     }
 }

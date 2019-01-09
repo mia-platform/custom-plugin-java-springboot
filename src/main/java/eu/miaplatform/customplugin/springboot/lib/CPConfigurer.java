@@ -32,6 +32,4 @@ public class CPConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggingInterceptor);
     }
-
-
 }

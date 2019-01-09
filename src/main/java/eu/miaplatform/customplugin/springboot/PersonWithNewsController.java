@@ -9,6 +9,8 @@ import eu.miaplatform.customplugin.springboot.model.News;
 import eu.miaplatform.customplugin.springboot.model.PersonWithNews;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -25,20 +27,31 @@ public class PersonWithNewsController extends CPController {
 
     @GetMapping("/")
     @ApiOperation(value = "Sample base path")
-    public String index(
+    @ResponseBody
+    public PersonWithNews index(
             @ApiIgnore @ModelAttribute(CP_REQUEST) CPRequest cpRequest) {
 
         cpRequest.getHeadersPropagator().getHeaders().forEach(header ->
                 logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
         );
 
-        return "Greetings from Mia-Platform Java Custom Plugin!";
+        return new PersonWithNews("Greetings", "From CP Java");
     }
 
     @GetMapping("/personwithnews")
     @ApiOperation(value = "Search a person and its news", response = PersonWithNews.class)
     @ResponseBody
     public PersonWithNews getPersonWithNews(
+            @ApiIgnore @ModelAttribute(CP_REQUEST) CPRequest cpRequest,
+            @RequestParam(value = "name") String name) {
+
+        return customPluginService.addHandler(cpRequest, getPersonWithNewsHandler(name));
+    }
+
+    @GetMapping("/personwithnewsfake")
+    @ApiOperation(value = "Search a person and its news", response = PersonWithNews.class)
+    @ResponseBody
+    public PersonWithNews getPersonWithNewsCopy(
             @ApiIgnore @ModelAttribute(CP_REQUEST) CPRequest cpRequest,
             @RequestParam(value = "name") String name) {
 
