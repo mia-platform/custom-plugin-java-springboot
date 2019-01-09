@@ -25,8 +25,14 @@ public class PersonWithNewsController extends CPController {
 
     @GetMapping("/")
     @ApiOperation(value = "Sample base path")
-    public String index() {
-        return "Greetings from Custom Plugin Java!";
+    public String index(
+            @ApiIgnore @ModelAttribute(CP_REQUEST) CPRequest cpRequest) {
+
+        cpRequest.getHeadersPropagator().getHeaders().forEach(header ->
+                logger.info("headerName: " + header.getName() + " - headerValue: " + header.getValue())
+        );
+
+        return "Greetings from Mia-Platform Java Custom Plugin!";
     }
 
     @GetMapping("/personwithnews")
