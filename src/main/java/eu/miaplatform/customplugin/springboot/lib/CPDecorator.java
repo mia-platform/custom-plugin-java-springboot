@@ -22,9 +22,12 @@ public class CPDecorator {
         FilterRegistrationBean registration = new FilterRegistrationBean();
 
         registration.setFilter((servletRequest, servletResponse, filterChain) -> {
+
             CPRequestWrapper requestWrapper = preHandler.apply(new CPRequestWrapper((HttpServletRequest) servletRequest));
             CPResponseWrapper responseWrapper = new CPResponseWrapper((HttpServletResponse) servletResponse);
+
             filterChain.doFilter(requestWrapper, responseWrapper);
+
             postHandler.accept(responseWrapper);
         });
         registration.setName(filter + number);

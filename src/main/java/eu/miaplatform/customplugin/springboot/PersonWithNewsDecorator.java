@@ -9,10 +9,75 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 @Configuration
 public class PersonWithNewsDecorator extends CPDecorator {
 
+
+    @Bean
+    public FilterRegistrationBean personWithNews() {
+
+        return addPrePostDecorator("/personwithnews",
+                request -> {
+                    // PATH
+                    String path = request.getPath();
+                    logger.info("Path = " + path);
+
+                    // METHOD
+                    String method = request.getMethod();
+                    logger.info("Method = " + method);
+
+                    // HEADERS
+                    request.addHeader("custom_request_header_name", "custom_request_header_value");
+
+                    // BODY
+                    String body;
+                    try {
+                        body = request.getBody();
+                        logger.info("Body = " + body);
+                    } catch (IOException e) {
+                        logger.error("Body (error) = " + e.getMessage());
+                    }
+
+                    if (method.equals("POST")) {
+                        PersonWithNews personWithNews = new PersonWithNews("fakeName", "fakeNews");
+                        request.setBody(new Gson().toJson(personWithNews));
+                    }
+
+                    // QUERY PARAMETERS
+                    String queryString = request.getQueryString();
+                    logger.info("QueryString = " + queryString);
+
+                    if (method.equals("GET")) {
+                        Map<String, String[]> queryStringParams = request.getQueryParameters();
+                        if (queryStringParams.containsKey("name")) {
+                            queryStringParams.replace("name", new String[]{"fakeName"});
+                        }
+                    }
+
+                    return request;
+                },
+                response -> {
+
+                    //BODY
+                    String body = response.getBody();
+                    try {
+                        response.setBody(body);
+                    } catch (IOException e) {
+                        logger.error(e.getMessage());
+                    }
+
+                    //HEADERS
+                    response.addHeader("custom_response_header_name", "custom_response_header_value");
+
+                    //STATUS
+                    logger.info("ResponseStatus = " + response.getStatus());
+
+                    response.setStatus(401);
+                });
+    }
 
     @Bean
     public FilterRegistrationBean personWithNewsCopy() {
@@ -23,12 +88,11 @@ public class PersonWithNewsDecorator extends CPDecorator {
                     return request;
                 },
                 response -> {
-                    ((HttpServletResponse) response.getResponse()).addHeader("custom_response_header_name", "custom_response_header_value");
+                    response.addHeader("custom_response_header_name", "custom_response_header_value");
 
                     PersonWithNews personWithNews = new PersonWithNews("fakeName", "fakeNews");
-                    byte[] responseToSend = new Gson().toJson(personWithNews).getBytes();
                     try {
-                        response.getResponse().getOutputStream().write(responseToSend);
+                        response.setBody(new Gson().toJson(personWithNews));
                     } catch (IOException e) {
                         logger.error(e.getMessage());
                     }
@@ -36,26 +100,6 @@ public class PersonWithNewsDecorator extends CPDecorator {
     }
 
     @Bean
-    public FilterRegistrationBean personWithNews() {
-
-        return addPrePostDecorator("/personwithnews",
-                request -> {
-                    request.addHeader("custom_request_header_name", "custom_request_header_value");
-                    return request;
-                },
-                response -> {
-                    String responseContent = new String(response.getDataStream());
-                    byte[] responseToSend = responseContent.getBytes();
-                    try {
-                        response.getResponse().getOutputStream().write(responseToSend);
-                    } catch (IOException e) {
-                        logger.error(e.getMessage());
-                    }
-                    ((HttpServletResponse) response.getResponse()).addHeader("custom_response_header_name", "custom_response_header_value");
-                });
-    }
-
-    /*@Bean
     public FilterRegistrationBean index() {
 
         return addPreDecorator("/",
@@ -63,5 +107,5 @@ public class PersonWithNewsDecorator extends CPDecorator {
                     request.addHeader("custom_request_header_name", "custom_request_header_value");
                     return request;
                 });
-    }*/
+    }
 }

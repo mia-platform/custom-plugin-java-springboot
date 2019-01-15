@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.*;
 
 public class CPResponseWrapper extends HttpServletResponseWrapper {
 
@@ -25,9 +26,12 @@ public class CPResponseWrapper extends HttpServletResponseWrapper {
         return filterOutput;
     }
 
-    public byte[] getDataStream() {
-        return output.toByteArray();
+    public String getBody() {
+        return new String(output.toByteArray());
     }
 
 
+    public void setBody(String body) throws IOException {
+        this.getResponse().getOutputStream().write(body.getBytes());
+    }
 }
