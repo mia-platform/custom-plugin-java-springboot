@@ -8,11 +8,11 @@ public class Options {
     private String microserviceGatewayServiceName;
 
     public Options() {
-        this.userIdHeaderKey = "ID";
-        this.groupsHeaderKey = "GROUP";
-        this.clientTypeHeaderKey = "CLIENT_TYPE";
-        this.backofficeHeaderKey = "BACKOFFICE";
-        this.microserviceGatewayServiceName = "MICROSERVICE";
+        this.userIdHeaderKey = "USERID_HEADER_KEY";
+        this.groupsHeaderKey = "GROUPS_HEADER_KEY";
+        this.clientTypeHeaderKey = "CLIENTTYPE_HEADER_KEY";
+        this.backofficeHeaderKey = "BACKOFFICE_HEADER_KEY";
+        this.microserviceGatewayServiceName = "MICROSERVICE_HEADER_KEY";
     }
     public Options(String userIdHeaderKey, String groupsHeaderKey, String clientTypeHeaderKey, String backofficeHeaderKey, String microserviceGatewayServiceName) {
         this.userIdHeaderKey = userIdHeaderKey;

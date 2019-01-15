@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.*;
 
-public class CustomRequestWrapper extends HttpServletRequestWrapper {
+public class CPRequestWrapper extends HttpServletRequestWrapper {
 
-    public CustomRequestWrapper(HttpServletRequest request) {
+    public CPRequestWrapper(HttpServletRequest request) {
         super(request);
     }
 

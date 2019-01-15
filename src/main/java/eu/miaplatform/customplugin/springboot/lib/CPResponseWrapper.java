@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class CustomResponseWrapper extends HttpServletResponseWrapper {
+public class CPResponseWrapper extends HttpServletResponseWrapper {
 
     private ByteArrayOutputStream output;
     private FilterServletOutputStream filterOutput;
 
-    public CustomResponseWrapper(HttpServletResponse response) {
+    public CPResponseWrapper(HttpServletResponse response) {
         super(response);
         output = new ByteArrayOutputStream();
     }

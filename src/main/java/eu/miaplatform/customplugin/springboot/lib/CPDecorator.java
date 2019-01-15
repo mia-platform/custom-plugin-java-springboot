@@ -4,28 +4,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 
-import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class CPFilter {
+public class CPDecorator {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final String filter = "filter";
     private int number = 1;
 
     protected FilterRegistrationBean addPrePostDecorator(String path,
-                                                         Function<CustomRequestWrapper, CustomRequestWrapper> preHandler,
-                                                         Consumer<CustomResponseWrapper> postHandler) {
+                                                         Function<CPRequestWrapper, CPRequestWrapper> preHandler,
+                                                         Consumer<CPResponseWrapper> postHandler) {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
 
         registration.setFilter((servletRequest, servletResponse, filterChain) -> {
-            CustomRequestWrapper requestWrapper = preHandler.apply(new CustomRequestWrapper((HttpServletRequest) servletRequest));
-            CustomResponseWrapper responseWrapper = new CustomResponseWrapper((HttpServletResponse) servletResponse);
+            CPRequestWrapper requestWrapper = preHandler.apply(new CPRequestWrapper((HttpServletRequest) servletRequest));
+            CPResponseWrapper responseWrapper = new CPResponseWrapper((HttpServletResponse) servletResponse);
             filterChain.doFilter(requestWrapper, responseWrapper);
             postHandler.accept(responseWrapper);
         });
@@ -36,12 +34,12 @@ public class CPFilter {
     }
 
 
-    protected FilterRegistrationBean addPreDecorator(String path, Function<CustomRequestWrapper, CustomRequestWrapper> preHandler) {
+    protected FilterRegistrationBean addPreDecorator(String path, Function<CPRequestWrapper, CPRequestWrapper> preHandler) {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
 
         registration.setFilter((servletRequest, servletResponse, filterChain) -> {
-            CustomRequestWrapper requestWrapper = preHandler.apply(new CustomRequestWrapper((HttpServletRequest) servletRequest));
+            CPRequestWrapper requestWrapper = preHandler.apply(new CPRequestWrapper((HttpServletRequest) servletRequest));
             filterChain.doFilter(requestWrapper, servletResponse);
         });
         registration.setName(filter + number);
@@ -50,12 +48,12 @@ public class CPFilter {
         return registration;
     }
 
-    protected FilterRegistrationBean addPostDecorator(String path, Consumer<CustomResponseWrapper> postHandler) {
+    protected FilterRegistrationBean addPostDecorator(String path, Consumer<CPResponseWrapper> postHandler) {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
 
         registration.setFilter((servletRequest, servletResponse, filterChain) -> {
-            CustomResponseWrapper responseWrapper = new CustomResponseWrapper((HttpServletResponse) servletResponse);
+            CPResponseWrapper responseWrapper = new CPResponseWrapper((HttpServletResponse) servletResponse);
             filterChain.doFilter(servletRequest, responseWrapper);
             postHandler.accept(responseWrapper);
         });

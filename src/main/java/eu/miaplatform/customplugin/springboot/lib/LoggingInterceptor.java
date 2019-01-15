@@ -35,6 +35,5 @@ public class LoggingInterceptor implements HandlerInterceptor {
         /*for (String s : response.getHeaderNames()) {
             logger.info("headerName = " + s);
         }*/
-
     }
 }
