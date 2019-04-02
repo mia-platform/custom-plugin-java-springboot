@@ -2,10 +2,10 @@ package eu.miaplatform.customplugin.springboot.example;
 
 import eu.miaplatform.customplugin.CRUDServiceClient;
 import eu.miaplatform.customplugin.ServiceClientFactory;
+import eu.miaplatform.customplugin.springboot.CPRequest;
 import eu.miaplatform.customplugin.springboot.example.model.Author;
 import eu.miaplatform.customplugin.springboot.example.model.News;
 import eu.miaplatform.customplugin.springboot.example.model.PersonWithNews;
-import eu.miaplatform.customplugin.springboot.lib.CPRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

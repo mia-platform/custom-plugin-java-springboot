@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;

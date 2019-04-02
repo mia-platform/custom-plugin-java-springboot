@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

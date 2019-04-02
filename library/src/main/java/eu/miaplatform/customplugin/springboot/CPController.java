@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class CPController {
 
     protected final String CP_REQUEST = "CP_REQUEST";
-    protected final Logger logger = LoggerFactory.getLogger(eu.miaplatform.customplugin.springboot.lib.CPController.class);
+    protected final Logger logger = LoggerFactory.getLogger(CPController.class);
 
     @Autowired
     protected CPService customPluginService;

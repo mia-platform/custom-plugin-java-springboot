@@ -9,7 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Custom Plugin Java Spring Boot Library</name>
+    <name>Custom Plugin Java Spring Boot Example</name>
     <description>Library that allows you to define Mia-Platform custom plugins in java and spring boot easily</description>
     <url>https://github.com/mia-platform/custom-plugin-java-springboot</url>
     <developers>
@@ -176,7 +176,7 @@
         </dependency>
         <dependency>
             <groupId>eu.miaplatform</groupId>
-            <artifactId>custom-plugin-java-springboot-lib</artifactId>
+            <artifactId>custom-plugin-java-springboot</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

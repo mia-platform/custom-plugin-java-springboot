@@ -1,5 +1,6 @@
 package eu.miaplatform.customplugin.springboot.example;
 
+import eu.miaplatform.customplugin.springboot.CPSwaggerConfig;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 

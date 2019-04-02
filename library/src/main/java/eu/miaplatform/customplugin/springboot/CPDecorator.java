@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

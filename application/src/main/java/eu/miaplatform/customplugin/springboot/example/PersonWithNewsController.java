@@ -1,5 +1,7 @@
 package eu.miaplatform.customplugin.springboot.example;
 
+import eu.miaplatform.customplugin.springboot.CPController;
+import eu.miaplatform.customplugin.springboot.CPRequest;
 import eu.miaplatform.customplugin.springboot.example.model.PersonWithNews;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

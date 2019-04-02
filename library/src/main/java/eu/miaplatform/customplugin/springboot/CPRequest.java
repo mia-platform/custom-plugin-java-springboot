@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import eu.miaplatform.customplugin.CustomPluginHeadersPropagator;
 import eu.miaplatform.customplugin.HeadersPropagatorFactory;

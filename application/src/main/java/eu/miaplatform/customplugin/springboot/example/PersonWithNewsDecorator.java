@@ -1,6 +1,7 @@
 package eu.miaplatform.customplugin.springboot.example;
 
 import com.google.gson.Gson;
+import eu.miaplatform.customplugin.springboot.CPDecorator;
 import eu.miaplatform.customplugin.springboot.example.model.PersonWithNews;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

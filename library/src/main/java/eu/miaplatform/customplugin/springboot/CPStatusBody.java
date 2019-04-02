@@ -1,6 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
-
-import eu.miaplatform.customplugin.springboot.SwaggerConfig;
+package eu.miaplatform.customplugin.springboot;
 
 import java.io.Serializable;
 
@@ -9,8 +7,8 @@ public class CPStatusBody implements Serializable {
     public static final String OK = "OK";
     public static final String KO = "KO";
 
-    private String name = new SwaggerConfig().getTitle();
-    private String version = new SwaggerConfig().getVersion();
+    private String name = "Custom Plugin Spring Boot REST API";
+    private String version = "0.0.1-SNAPSHOT";
     private String status;
 
     public String getName() {

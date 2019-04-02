@@ -1,4 +1,4 @@
-package eu.miaplatform.customplugin.springboot.lib;
+package eu.miaplatform.customplugin.springboot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoggingInterceptor implements HandlerInterceptor {
 
-    private final Logger logger = LoggerFactory.getLogger(eu.miaplatform.customplugin.springboot.lib.LoggingInterceptor.class);
+    private final Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
