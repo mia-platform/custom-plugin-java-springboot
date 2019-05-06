@@ -32,6 +32,10 @@
         <developerConnection>scm:git@github.com:mia-platform/custom-plugin-java-springboot.git</developerConnection>
     </scm>
 
+    <modules>
+        <module>../library</module>
+    </modules>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
