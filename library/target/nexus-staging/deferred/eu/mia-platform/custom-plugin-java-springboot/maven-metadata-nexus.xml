@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>eu.mia-platform</groupId>
+  <artifactId>custom-plugin-java-springboot</artifactId>
+  <versioning>
+    <versions>
+      <version>0.0.2-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20191212133555</lastUpdated>
+  </versioning>
+</metadata>

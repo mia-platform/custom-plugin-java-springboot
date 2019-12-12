@@ -6,7 +6,7 @@
 
     <groupId>eu.miaplatform</groupId>
     <artifactId>custom-plugin-java-springboot-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Custom Plugin Java Spring Boot Example</name>
@@ -186,7 +186,7 @@
         <dependency>
             <groupId>eu.mia-platform</groupId>
             <artifactId>custom-plugin-java</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
