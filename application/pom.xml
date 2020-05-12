@@ -6,7 +6,7 @@
 
     <groupId>eu.miaplatform</groupId>
     <artifactId>custom-plugin-java-springboot-app</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>Custom Plugin Java Spring Boot Example</name>
