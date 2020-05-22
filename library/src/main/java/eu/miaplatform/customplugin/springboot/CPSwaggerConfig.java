@@ -1,5 +1,4 @@
 package eu.miaplatform.customplugin.springboot;
-
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -15,7 +14,7 @@ public abstract class CPSwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("eu.miaplatform.customplugin.springboot"))
+                .apis(RequestHandlerSelectors.basePackage(getSelector()))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData());
@@ -48,5 +47,7 @@ public abstract class CPSwaggerConfig {
 
     public abstract String getContactEmail();
 
-
+    // selector add to API Doc the classes that expose APIs
+    // you can use for example "eu.miaplatform.customplugin.springboot"
+    public abstract String getSelector();
 }
