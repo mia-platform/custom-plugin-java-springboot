@@ -1,14 +1,13 @@
 package eu.miaplatform.customplugin.springboot;
 
+import eu.miaplatform.customplugin.PreDecoratorRequest;
+import eu.miaplatform.customplugin.Request;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class CPController {
 
     protected final String CP_REQUEST = "CP_REQUEST";
+    protected final String PRE_DECORATOR_REQUEST = "PRE_DECORATOR_REQUEST";
     protected final Logger logger = LoggerFactory.getLogger(CPController.class);
 
     @Autowired
@@ -27,6 +27,20 @@ public abstract class CPController {
         return new CPRequest(request, new Options());
     }
 
+    @ModelAttribute(PRE_DECORATOR_REQUEST)
+    public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
+        String body = DecoratorUtils.getBody(request);
+        return PreDecoratorRequest.builder()
+                .request(Request.builder()
+                        .method(request.getMethod())
+                        .path(request.getRequestURI())
+                        .headers(DecoratorUtils.getHeaders(request))
+                        .query(request.getQueryString())
+                        .body(body)
+                        .build())
+                .build();
+    }
+
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
     @ResponseBody
@@ -34,19 +48,17 @@ public abstract class CPController {
         return healthinessHandler(cpRequest);
     }
 
-
     @GetMapping("/-/ready")
     @ApiOperation(value = "Ready")
     public ResponseEntity ready(@ApiIgnore @ModelAttribute(CP_REQUEST) CPRequest cpRequest) {
         return readinessHandler(cpRequest);
     }
 
-
-    public ResponseEntity healthinessHandler (CPRequest cpRequest) {
+    public ResponseEntity healthinessHandler(CPRequest cpRequest) {
         return CPStatus.statusOk(new CPStatusBody());
     }
 
-    public ResponseEntity readinessHandler (CPRequest cpRequest) {
+    public ResponseEntity readinessHandler(CPRequest cpRequest) {
         return CPStatus.statusKo(new CPStatusBody());
     }
 }
