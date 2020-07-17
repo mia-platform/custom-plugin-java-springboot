@@ -1,35 +1,25 @@
 package eu.miaplatform.customplugin.springboot;
 
+import eu.miaplatform.decorators.DecoratorResponse;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
 
 public class DecoratorUtils {
-    static Map<String, String> getHeaders(HttpServletRequest request) {
-        Map<String, String> headers = new HashMap<>();
-        Enumeration headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
-            String value = request.getHeader(key);
-            headers.put(key, value);
-        }
-        return headers;
-    }
+    public static ResponseEntity<Object> getResponseEntityFromDecoratorResponse(DecoratorResponse decoratorResponse) {
+        HttpStatus httpStatusCode = HttpStatus.resolve(decoratorResponse.getStatusCode());
+        MultiValueMap<String, String> headersMultiValueMap = new LinkedMultiValueMap<>();
+        decoratorResponse.getHeaders().forEach(headersMultiValueMap::add);
+        HttpHeaders httpHeaders = new HttpHeaders(headersMultiValueMap);
 
-    static String getBody(HttpServletRequest request) {
-        String body = "";
-        try {
-            StringBuilder buffer = new StringBuilder();
-            BufferedReader reader = request.getReader();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
-            body = buffer.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return body;
+        return ResponseEntity
+                .status(httpStatusCode != null ? httpStatusCode : HttpStatus.OK)
+                .headers(httpHeaders)
+                .body(decoratorResponse.getBody());
     }
 }

@@ -45,50 +45,6 @@ public abstract class CPController {
         return new CPRequest(request, new Options());
     }
 
-/*    @ModelAttribute(POST_DECORATOR_REQUEST)
-    public PostDecoratorRequest makePostDecoratorRequest(HttpServletRequest request) {
-        String body = DecoratorUtils.getBody(request);
-        return PostDecoratorRequest.builder()
-                .request(DecoratorRequest.builder()
-                        .method(request.getMethod())
-                        .path(request.getRequestURI())
-                        .headers(DecoratorUtils.getHeaders(request))
-                        .query(request.getQueryString())
-                        .body(body)
-                        .build())
-                .build();
-    }*/
-
-/*in
-/*    @ModelAttribute(POST_DECORATOR_REQUEST)
-    public PostDecoratorRequest makePostDecoratorRequest(HttpServletRequest request) {
-        String body = DecoratorUtils.getBody(request);
-        return PostDecoratorRequest.builder()
-                .request(DecoratorRequest.builder()
-                        .method(request.getMethod())
-                        .path(request.getRequestURI())
-                        .headers(DecoratorUtils.getHeaders(request))
-                        .query(request.getQueryString())
-                        .body(body)
-                        .build())
-                .build();
-    }*/
-
-/*
-    @ModelAttribute(PRE_DECORATOR_REQUEST)
-    public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
-        String body = DecoratorUtils.getBody(request);
-        return PreDecoratorRequest.builder()
-                .request(DecoratorRequest.builder()
-                        .method(request.getMethod())
-                        .path(request.getRequestURI())
-                        .headers(DecoratorUtils.getHeaders(request))
-                        .query(request.getQueryString())
-                        .body(body)
-                        .build()).build();
-    }
-*/
-
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
     @ResponseBody
