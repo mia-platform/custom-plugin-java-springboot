@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="custom-plugin-java-0.0.5-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../custom-plugin-java/target/custom-plugin-java-0.0.5-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

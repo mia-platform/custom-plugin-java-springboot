@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class CPController {
 
     protected final String CP_REQUEST = "CP_REQUEST";
-    protected final String PRE_DECORATOR_REQUEST = "PRE_DECORATOR_REQUEST";
     protected final Logger logger = LoggerFactory.getLogger(CPController.class);
 
     @Autowired
@@ -61,6 +60,21 @@ public abstract class CPController {
     }*/
 
 /*in
+/*    @ModelAttribute(POST_DECORATOR_REQUEST)
+    public PostDecoratorRequest makePostDecoratorRequest(HttpServletRequest request) {
+        String body = DecoratorUtils.getBody(request);
+        return PostDecoratorRequest.builder()
+                .request(DecoratorRequest.builder()
+                        .method(request.getMethod())
+                        .path(request.getRequestURI())
+                        .headers(DecoratorUtils.getHeaders(request))
+                        .query(request.getQueryString())
+                        .body(body)
+                        .build())
+                .build();
+    }*/
+
+/*
     @ModelAttribute(PRE_DECORATOR_REQUEST)
     public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
         String body = DecoratorUtils.getBody(request);
