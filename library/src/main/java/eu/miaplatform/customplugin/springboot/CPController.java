@@ -1,7 +1,5 @@
 package eu.miaplatform.customplugin.springboot;
 
-import eu.miaplatform.customplugin.PreDecoratorRequest;
-import eu.miaplatform.customplugin.Request;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class CPController {
 
     protected final String CP_REQUEST = "CP_REQUEST";
-    protected final String PRE_DECORATOR_REQUEST = "PRE_DECORATOR_REQUEST";
     protected final Logger logger = LoggerFactory.getLogger(CPController.class);
 
     @Autowired
@@ -27,11 +24,11 @@ public abstract class CPController {
         return new CPRequest(request, new Options());
     }
 
-    @ModelAttribute(PRE_DECORATOR_REQUEST)
-    public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
+/*    @ModelAttribute(POST_DECORATOR_REQUEST)
+    public PostDecoratorRequest makePostDecoratorRequest(HttpServletRequest request) {
         String body = DecoratorUtils.getBody(request);
-        return PreDecoratorRequest.builder()
-                .request(Request.builder()
+        return PostDecoratorRequest.builder()
+                .request(DecoratorRequest.builder()
                         .method(request.getMethod())
                         .path(request.getRequestURI())
                         .headers(DecoratorUtils.getHeaders(request))
@@ -39,7 +36,22 @@ public abstract class CPController {
                         .body(body)
                         .build())
                 .build();
+    }*/
+
+/*
+    @ModelAttribute(PRE_DECORATOR_REQUEST)
+    public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
+        String body = DecoratorUtils.getBody(request);
+        return PreDecoratorRequest.builder()
+                .request(DecoratorRequest.builder()
+                        .method(request.getMethod())
+                        .path(request.getRequestURI())
+                        .headers(DecoratorUtils.getHeaders(request))
+                        .query(request.getQueryString())
+                        .body(body)
+                        .build()).build();
     }
+*/
 
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
