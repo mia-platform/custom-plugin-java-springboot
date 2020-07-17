@@ -1,7 +1,5 @@
 package eu.miaplatform.customplugin.springboot;
 
-import eu.miaplatform.decorators.DecoratorRequest;
-import eu.miaplatform.decorators.predecorators.PreDecoratorRequest;
 import eu.miaplatform.service.EnvConfiguration;
 import eu.miaplatform.service.EnvConfigurationException;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +46,21 @@ public abstract class CPController {
         return new CPRequest(request, new Options());
     }
 
+/*    @ModelAttribute(POST_DECORATOR_REQUEST)
+    public PostDecoratorRequest makePostDecoratorRequest(HttpServletRequest request) {
+        String body = DecoratorUtils.getBody(request);
+        return PostDecoratorRequest.builder()
+                .request(DecoratorRequest.builder()
+                        .method(request.getMethod())
+                        .path(request.getRequestURI())
+                        .headers(DecoratorUtils.getHeaders(request))
+                        .query(request.getQueryString())
+                        .body(body)
+                        .build())
+                .build();
+    }*/
+
+/*in
     @ModelAttribute(PRE_DECORATOR_REQUEST)
     public PreDecoratorRequest makePreDecoratorRequest(HttpServletRequest request) {
         String body = DecoratorUtils.getBody(request);
@@ -58,9 +71,9 @@ public abstract class CPController {
                         .headers(DecoratorUtils.getHeaders(request))
                         .query(request.getQueryString())
                         .body(body)
-                        .build())
-                .build();
+                        .build()).build();
     }
+*/
 
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
