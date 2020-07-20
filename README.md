@@ -50,9 +50,9 @@ and returns a `ResponseEntity`. The `ResponseEntity` instance can be obtained th
 For example:
 
 ``` java
-    @PostMapping("/")
+    @PostMapping("/checkStatusCode")
     @ResponseBody
-    public ResponseEntity postDecoratorAbortChain(@RequestBody PostDecoratorRequest request) {
+    public ResponseEntity checkStatusCode(@RequestBody PostDecoratorRequest request) {
         if (request.getOriginalResponseStatusCode == 404) {
             DecoratorResponse decoratorResponse = DecoratorResponseFactory.abortChain(401);
         } else {
