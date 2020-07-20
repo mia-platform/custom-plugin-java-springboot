@@ -13,7 +13,7 @@ In order to handle HTTP requests, you have to create a class that extends `CPCon
 ```
 
 ### Defining an endpoint
-To define an endpoint, you have to add a method to your controller. The method receives a `CPRequest` as input. For example:
+To define an endpoint, you have to add a method to your controller. The method receives a `CPRequest` as input and can return any class object. For example:
 
 ``` java
    @GetMapping("/hello")
