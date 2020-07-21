@@ -66,6 +66,7 @@
       <workItem from="1593162684729" duration="52000" />
       <workItem from="1593162752355" duration="135000" />
       <workItem from="1595263923392" duration="467000" />
+      <workItem from="1595321539142" duration="401000" />
     </task>
     <servers />
   </component>
@@ -82,6 +83,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1938" y="50" key="CommitChangelistDialog2" timestamp="1595263956340">
