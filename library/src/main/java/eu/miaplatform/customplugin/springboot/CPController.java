@@ -1,7 +1,7 @@
 package eu.miaplatform.customplugin.springboot;
 
-import eu.miaplatform.service.EnvConfiguration;
-import eu.miaplatform.service.EnvConfigurationException;
+import eu.miaplatform.service.environment.EnvConfiguration;
+import eu.miaplatform.service.environment.InvalidEnvConfigurationException;
 import io.swagger.annotations.ApiOperation;
 import javafx.application.Application;
 import org.slf4j.Logger;
@@ -29,10 +29,9 @@ public abstract class CPController {
 
     @PostConstruct
     public void init() {
-        EnvConfiguration envConfiguration = new EnvConfiguration();
         try {
-            envConfiguration.parseEnvironment();
-        } catch (EnvConfigurationException ex) {
+            EnvConfiguration.parseEnvironment();
+        } catch (InvalidEnvConfigurationException ex) {
             ex.printStackTrace();
             ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class)
                     .web(WebApplicationType.NONE).run();
