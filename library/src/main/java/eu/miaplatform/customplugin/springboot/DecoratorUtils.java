@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class DecoratorUtils {
-    public static ResponseEntity<Object> getResponseEntityFromDecoratorResponse(DecoratorResponse decoratorResponse) {
+    public static ResponseEntity<Serializable> getResponseEntityFromDecoratorResponse(DecoratorResponse decoratorResponse) {
         HttpStatus httpStatusCode = HttpStatus.resolve(decoratorResponse.getStatusCode());
         MultiValueMap<String, String> headersMultiValueMap = new LinkedMultiValueMap<>();
         decoratorResponse.getHeaders().forEach(headersMultiValueMap::add);
