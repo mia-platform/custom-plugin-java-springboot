@@ -35,7 +35,7 @@ public abstract class CPController {
             ex.printStackTrace();
             ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class)
                     .web(WebApplicationType.NONE).run();
-            SpringApplication.exit(ctx, () -> 0);
+            SpringApplication.exit(ctx, () -> 1);
         }
     }
 
