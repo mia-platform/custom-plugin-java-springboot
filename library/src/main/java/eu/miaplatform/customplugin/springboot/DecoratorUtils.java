@@ -5,10 +5,7 @@ import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.*;
+import java.io.Serializable;
 
 public class DecoratorUtils {
     public static ResponseEntity<Serializable> getResponseEntityFromDecoratorResponse(DecoratorResponse decoratorResponse) {

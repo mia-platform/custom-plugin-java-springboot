@@ -165,8 +165,8 @@
         </dependency>
         <dependency>
             <groupId>eu.mia-platform</groupId>
-            <artifactId>custom-plugin-java</artifactId>
-            <version>0.0.5</version>
+            <artifactId>mia-service-java-library</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>
