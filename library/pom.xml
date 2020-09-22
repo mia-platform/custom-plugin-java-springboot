@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.mia-platform</groupId>
-    <artifactId>custom-plugin-java-springboot</artifactId>
-    <version>0.0.2</version>
+    <artifactId>mia-service-java-springboot-library</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Custom Plugin Java Spring Boot Library</name>
@@ -53,6 +53,7 @@
         <java.version>1.8</java.version>
         <src.dir>src/main/java</src.dir>
         <test.src.dir>src/test/java</test.src.dir>
+        <dokka.version>1.4.0</dokka.version>
     </properties>
 
     <build>
@@ -71,17 +72,24 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0</version>
+                <groupId>org.jetbrains.dokka</groupId>
+                <artifactId>dokka-maven-plugin</artifactId>
+                <version>${dokka.version}</version>
                 <executions>
                     <execution>
-                        <id>attach-javadocs</id>
+                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>dokka</goal>
+                            <goal>javadoc</goal>
+                            <goal>javadocJar</goal>
                         </goals>
                     </execution>
                 </executions>
+                 <configuration>
+                    <includes>
+                        <file>packages.md</file>
+                    </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -175,4 +183,11 @@
         </dependency>
     </dependencies>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
