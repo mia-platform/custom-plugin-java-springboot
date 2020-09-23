@@ -62,6 +62,6 @@ public abstract class CPController {
     }
 
     public ResponseEntity readinessHandler(CPRequest cpRequest) {
-        return CPStatus.statusKo(new CPStatusBody());
+        return CPStatus.statusOk(new CPStatusBody());
     }
 }
