@@ -4,10 +4,18 @@ Library that allows you to create Spring Boot services to deploy on
 [custom-plugin-java](https://github.com/mia-platform/custom-plugin-java).
 
 ## Usage
-### Route controller
+### Route controllers
 In order to handle HTTP requests, you have to create a class that extends `CPController`.
 ``` java
     public class HelloWorldController extends CPController {
+        // Endpoints defined here
+    }
+
+```
+### Status routes
+In order to make status routes available, **only** your root mapped controller has to extend `CPStatusController`.
+``` java
+    public class MyRootController extends CPStatusController {
         // Endpoints defined here
     }
 ```
