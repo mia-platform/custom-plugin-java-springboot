@@ -7,7 +7,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import static eu.miaplatform.customplugin.springboot.CPConstants.CP_REQUEST;
 
 @RestController
-public class CPStatusController extends CPController{
+public class CPStatusController extends CPController {
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
     @ResponseBody
