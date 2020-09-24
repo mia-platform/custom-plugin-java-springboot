@@ -13,7 +13,9 @@ In order to handle HTTP requests, you have to create a class that extends `CPCon
 
 ```
 ### Status routes
-In order to make status routes available, **only** your root mapped controller has to extend `CPStatusController`.
+In order to make status routes available you can extend `CPStatusController`, please note that **only** one controller has to extend this class, otherwise Springboot will throw a runtime error due to double route registration.
+
+Since `CPStatusController` extends `CPController` we suggest to extend this in your main controller and then extend `CPController` in other controllers.
 ``` java
     public class MyRootController extends CPStatusController {
         // Endpoints defined here
