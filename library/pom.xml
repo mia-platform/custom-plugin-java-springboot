@@ -6,7 +6,7 @@
 
     <groupId>eu.mia-platform</groupId>
     <artifactId>mia-service-java-springboot-library</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>Custom Plugin Java Spring Boot Library</name>
@@ -174,7 +174,7 @@
         <dependency>
             <groupId>eu.mia-platform</groupId>
             <artifactId>mia-service-java-library</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
