@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import static eu.miaplatform.customplugin.springboot.CPConstants.CP_REQUEST;
 
-@RestController
 public class CPStatusController extends CPController {
     @GetMapping("/-/healthz")
     @ApiOperation(value = "Healthz")
